@@ -1,36 +1,22 @@
-# This is a basic workflow to help you get started with Actions
+from string import punctuation
+print ("1) Сортувати в Алфавiтному прядку текст")
+print ("2) Получити кiлькiсть всiх букв в текстi")
 
-name: CI
+dija = input ("Дiя:")
+txt = input("Введiть текст:")
+if dija == '1':
+    al = txt.split()
+    al = set([word for word in al if len(word) > 2])
+    al = list(al)
+    al.sort(reverse=0)
+    print('B Алфавiтному прядку текст:')
+    print(', '.join(al))
 
-# Controls when the action will run. 
-on:
-  # Triggers the workflow on push or pull request events but only for the main branch
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+if dija == '2':
+    kor = {}
+    for ch in txt:
+        if ch not in punctuation and ch!= " ":
+            kor[ch] = kor[ch]+1 if ch in kor else 1
+    for a in kor.items():
+        print(f"'Буква'{a[0]} 'кiлькiсть'{a[1]}")
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
-jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
