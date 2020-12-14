@@ -1,3 +1,4 @@
+from string import punctuation
 print ("1) Сортувати в Алфавытному прядку текст")
 print ("2) Получити цифри всых букв в тексты")
 
@@ -10,5 +11,11 @@ if dija == '1':
     al.sort(reverse=0)
     print('B Алфавiтному прядку текст:')
     print(', '.join(al))
+
 if dija == '2':
-    bok =
+    kor = {}
+    for ch in txt:
+        if ch not in punctuation and ch!= " ":
+            kor[ch] = kor[ch]+1 if ch in kor else 1
+    for a in kor.items():
+        print(f"'Буква'{a[0]} 'кiлькiсть'{a[1]}")
